@@ -93,6 +93,11 @@ public class GameController {
 
     }
 
+    public void restartGame() {
+        rebuildDeck();
+        gameState = GameState.AddingPlayers;
+    }
+
     private void evaluateWinner() {
         winner = evaluator.evaluateWinner(players);
     }
