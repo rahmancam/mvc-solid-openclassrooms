@@ -1,6 +1,7 @@
 package com.rahman.oc.cardgame;
 
 import com.rahman.oc.cardgame.controller.GameController;
+import com.rahman.oc.cardgame.games.GameEvaluator;
 import com.rahman.oc.cardgame.games.HighCardGameEvaulator;
 import com.rahman.oc.cardgame.model.Deck;
 import com.rahman.oc.cardgame.view.ConsoleView;
@@ -11,10 +12,11 @@ public class CardGame {
 
     GameController controller;
     public CardGame() {
-        ConsoleView consoleView = new ConsoleView();
+        // ConsoleView consoleView = new ConsoleView();
         SwingView swingView = new SwingView();
-
-        this.controller = new GameController(swingView, new Deck(), new HighCardGameEvaulator());
+        Deck deck = DeckFactory.makeDeck(DeckFactory.DeckType.NORMAL);
+        GameEvaluator evaluator = new HighCardGameEvaulator();
+        this.controller = new GameController(swingView, deck, evaluator);
         swingView.createAndShowGUI();
     }
 
