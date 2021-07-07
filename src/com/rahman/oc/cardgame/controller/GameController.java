@@ -4,7 +4,8 @@ import com.rahman.oc.cardgame.games.GameEvaluator;
 import com.rahman.oc.cardgame.model.Deck;
 import com.rahman.oc.cardgame.model.Player;
 import com.rahman.oc.cardgame.model.PlayingCard;
-import com.rahman.oc.cardgame.view.View;
+import com.rahman.oc.cardgame.view.ConsoleView;
+import com.rahman.oc.cardgame.view.GameViewable;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,16 @@ public class GameController {
     Deck deck;
     ArrayList<Player> players;
     Player winner;
-    View view;
+    GameViewable view;
     GameState gameState;
+    GameEvaluator evaluator;
 
-    public GameController(View view, Deck deck) {
+    public GameController(GameViewable view, Deck deck, GameEvaluator gameEvaluator) {
         this.deck = deck;
         this.view = view;
         players = new ArrayList<>();
         gameState = GameState.AddingPlayers;
+        evaluator = gameEvaluator;
         view.setController(this);
     }
 
@@ -91,6 +94,6 @@ public class GameController {
     }
 
     private void evaluateWinner() {
-        winner = new GameEvaluator().evaluateWinner(players);
+        winner = evaluator.evaluateWinner(players);
     }
 }

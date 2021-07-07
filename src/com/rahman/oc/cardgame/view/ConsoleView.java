@@ -4,7 +4,7 @@ import com.rahman.oc.cardgame.controller.GameController;
 
 import java.util.Scanner;
 
-public  class View {
+public  class ConsoleView implements GameViewable {
     GameController controller;
     Scanner keyboard = new Scanner(System.in);
     public void setController(GameController gc) {

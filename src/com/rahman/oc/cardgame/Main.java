@@ -1,7 +1,5 @@
 package com.rahman.oc.cardgame;
 
-import com.rahman.oc.cardgame.games.CardGame;
-
 public class Main {
 
     public static void main(String[] args) {
