@@ -3,13 +3,10 @@ package com.rahman.oc.cardgame.controller;
 import com.rahman.oc.cardgame.model.Deck;
 import com.rahman.oc.cardgame.model.Player;
 import com.rahman.oc.cardgame.model.PlayingCard;
+import com.rahman.oc.cardgame.view.View;
 
 import java.util.ArrayList;
 
-class View {
-    public void something() {}
-    public void setController(GameController gc) {}
-}
 
 public class GameController {
     enum GameState {
@@ -36,13 +33,13 @@ public class GameController {
         while (true){
             switch ( gameState){
                 case AddingPlayers:
-                    view.something();
+                    view.promptForPlayerName();
                     break;
                 case CardsDealt:
-                    view.something();
+                    view.promptForFlip();
                     break;
                 case WinnerRevealed:
-                    view.something();
+                    view.promptForNewGame();
                     break;
             }
         }
@@ -51,7 +48,7 @@ public class GameController {
     public  void  addPlayer(String playerName) {
         if (gameState == GameState.AddingPlayers) {
             players.add(new Player(playerName));
-            view.something();
+            view.showPlayerName(players.size(), playerName);
         }
     }
 
@@ -61,7 +58,7 @@ public class GameController {
             int playerIndex = 1;
             for (Player player : players){
                 player.addCardToHand(deck.removeTopCard());
-                view.something();
+                view.showFaceDownCardForPlayer(playerIndex++, player.getName());
             }
             gameState = GameState.CardsDealt;
         }
@@ -72,7 +69,7 @@ public class GameController {
         for (Player player : players){
             PlayingCard pc = player.getCard(0);
             pc.flip(true);
-            view.something();
+            view.showCardForPlayer(playerIndex++, player.getName(), pc.getRank().toString(), pc.getSuite().toString());
         }
 
         evaluateWinner();
@@ -88,7 +85,7 @@ public class GameController {
     }
 
     private void displayWinner() {
-        view.something();
+        view.showWinner(winner.getName());
 
     }
 
