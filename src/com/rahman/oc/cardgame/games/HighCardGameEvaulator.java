@@ -1,17 +1,17 @@
 package com.rahman.oc.cardgame.games;
 
-import com.rahman.oc.cardgame.model.Player;
+import com.rahman.oc.cardgame.model.IPlayer;
 import com.rahman.oc.cardgame.model.PlayingCard;
 
 import java.util.ArrayList;
 
 public class HighCardGameEvaulator implements GameEvaluator {
-    public Player evaluateWinner(ArrayList<Player> players) {
-        Player bestPlayer = null;
+    public IPlayer evaluateWinner(ArrayList<IPlayer> players) {
+        IPlayer bestPlayer = null;
         int bestRank = -1;
         int bestSuit = -1;
 
-        for( Player player: players) {
+        for( IPlayer player: players) {
             boolean newBestPlayer = false;
             if (bestPlayer == null) {
                 newBestPlayer = true;

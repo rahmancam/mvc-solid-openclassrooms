@@ -1,11 +1,7 @@
 package com.rahman.oc.cardgame.controller;
 
 import com.rahman.oc.cardgame.games.GameEvaluator;
-import com.rahman.oc.cardgame.model.Deck;
-import com.rahman.oc.cardgame.model.Player;
-import com.rahman.oc.cardgame.model.PlayingCard;
-import com.rahman.oc.cardgame.view.ConsoleView;
-import com.rahman.oc.cardgame.view.GameViewable;
+import com.rahman.oc.cardgame.model.*;
 import com.rahman.oc.cardgame.view.GameViewables;
 
 import java.util.ArrayList;
@@ -19,8 +15,8 @@ public class GameController {
     }
 
     Deck deck;
-    ArrayList<Player> players;
-    Player winner;
+    ArrayList<IPlayer> players;
+    IPlayer winner;
     GameViewables view;
     GameState gameState;
     GameEvaluator evaluator;
@@ -61,7 +57,7 @@ public class GameController {
         if(gameState != GameState.CardsDealt){
             deck.shuffle();
             int playerIndex = 1;
-            for (Player player : players){
+            for (IPlayer player : players){
                 player.addCardToHand(deck.removeTopCard());
                 view.showFaceDownCardForPlayer(playerIndex++, player.getName());
             }
@@ -71,7 +67,7 @@ public class GameController {
 
     public  void flipCards(){
         int playerIndex = 1;
-        for (Player player : players){
+        for (IPlayer player : players){
             PlayingCard pc = player.getCard(0);
             pc.flip(true);
             view.showCardForPlayer(playerIndex++, player.getName(), pc.getRank().toString(), pc.getSuite().toString());
@@ -84,7 +80,7 @@ public class GameController {
     }
 
     private void rebuildDeck() {
-        for(Player player: players) {
+        for(IPlayer player: players) {
             deck.returnCard(player.removeCard());
         }
     }
@@ -100,6 +96,6 @@ public class GameController {
     }
 
     private void evaluateWinner() {
-        winner = evaluator.evaluateWinner(players);
+        winner = new WinningPlayer(evaluator.evaluateWinner(players));
     }
 }
