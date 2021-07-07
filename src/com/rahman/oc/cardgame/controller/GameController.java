@@ -6,6 +6,7 @@ import com.rahman.oc.cardgame.model.Player;
 import com.rahman.oc.cardgame.model.PlayingCard;
 import com.rahman.oc.cardgame.view.ConsoleView;
 import com.rahman.oc.cardgame.view.GameViewable;
+import com.rahman.oc.cardgame.view.GameViewables;
 
 import java.util.ArrayList;
 
@@ -20,11 +21,11 @@ public class GameController {
     Deck deck;
     ArrayList<Player> players;
     Player winner;
-    GameViewable view;
+    GameViewables view;
     GameState gameState;
     GameEvaluator evaluator;
 
-    public GameController(GameViewable view, Deck deck, GameEvaluator gameEvaluator) {
+    public GameController(GameViewables view, Deck deck, GameEvaluator gameEvaluator) {
         this.deck = deck;
         this.view = view;
         players = new ArrayList<>();
