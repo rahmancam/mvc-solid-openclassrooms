@@ -11,6 +11,7 @@ public  class View {
         this.controller = gc;
     }
     public void promptForPlayerName() {
+        System.out.println("Enter player name");
         String name = keyboard.nextLine();
         if(name.isEmpty()) {
             controller.startGame();
