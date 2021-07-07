@@ -4,16 +4,17 @@ import com.rahman.oc.cardgame.controller.GameController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class GameViewables implements  GameViewable {
-    List<GameViewable> views;
+    Vector<GameViewable> views;
 
 
     public GameViewables() {
-        this.views = new ArrayList<GameViewable>();
+        this.views = new Vector<GameViewable>();
     }
 
-    public  void  addGameViewable(GameViewable gameViewable){
+    public  void  addViewable(GameViewable gameViewable){
         views.add(gameViewable);
     }
 

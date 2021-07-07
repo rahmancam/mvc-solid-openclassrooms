@@ -14,7 +14,7 @@ public class SwingView implements GameViewable {
     JButton btnDealCards;
     JButton btnFindWinner;
     JTextArea textArea;
-    char nextPlayerName = 'A';
+    static char nextPlayerName = 'A';
 
     public void createAndShowGUI() {
         // create the main display area, with enough initial space
@@ -29,6 +29,7 @@ public class SwingView implements GameViewable {
         addAddPlayerButton(contentPane);
         addDealCardsButton(contentPane);
         addFindWinnerButton(contentPane);
+        addNewWindow(contentPane);
 
         addControllerCommandTracker(contentPane);
 
@@ -70,6 +71,18 @@ public class SwingView implements GameViewable {
             public void actionPerformed(ActionEvent e) {
                 textArea.append("Show your cards:\n");
                 controller.flipCards();
+            }
+        });
+    }
+
+    private void addNewWindow(Container contentPane) {
+        JButton btnAddWindow = new JButton("Add Window");
+        addCenteredComponent (btnAddWindow, contentPane);
+        btnAddWindow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingView game = new SwingView();
+                game.createAndShowGUI();
+                controller.addViewable(game);
             }
         });
     }

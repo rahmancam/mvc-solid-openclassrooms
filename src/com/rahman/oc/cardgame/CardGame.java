@@ -17,14 +17,11 @@ public class CardGame {
         Deck deck = DeckFactory.makeDeck(DeckFactory.DeckType.NORMAL);
         GameEvaluator evaluator = new HighCardGameEvaulator();
 
-        ConsoleView consoleView = new ConsoleView();
+        // ConsoleView consoleView = new ConsoleView();
         SwingView swingView = new SwingView();
-        GameViewables views = new GameViewables();
-        views.addGameViewable(consoleView);
-        views.addGameViewable(swingView);
         swingView.createAndShowGUI();
 
-        this.controller = new GameController(views, deck, evaluator);
+        this.controller = new GameController(swingView, deck, evaluator);
     }
 
     public void run() {
