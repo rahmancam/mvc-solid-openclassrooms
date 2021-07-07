@@ -22,7 +22,7 @@ public class Player  {
         return hand.getCard(index);
     }
 
-    public PlayingCard removeCard(int index) {
+    public PlayingCard removeCard() {
         return hand.removeCard();
     }
 }
